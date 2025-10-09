@@ -1,22 +1,22 @@
 {
-  "name": "register-signup",
+  "name": "register-sign",
   "version": "1.0.0",
-  "description": "registeration api",
+  "description": "registration api",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/MohamedAbdElsemie/registeration.git"
+    "url": "git+https://github.com/MohamedAbdElsemie/registration.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/MohamedAbdElsemie/registeration/issues"
+    "url": "https://github.com/MohamedAbdElsemie/registration/issues"
   },
-  "homepage": "https://github.com/MohamedAbdElsemie/registeration#readme",
+  "homepage": "https://github.com/MohamedAbdElsemie/registration#readme",
   "dependencies": {
     "express": "^5.1.0"
   },
