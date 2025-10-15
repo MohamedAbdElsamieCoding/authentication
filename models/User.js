@@ -1,49 +1,39 @@
 import mongoose from "mongoose";
-import validator from "express-validator";
+import validator from "validator";
 
 const userSchema = new mongoose.Schema(
   {
-    name: {
+    firstName: {
       type: String,
-      required: [true, "please provide your name"],
+      required: true,
       trim: true,
-      maxLength: [50, "Name must be less than 50 characters"],
+      maxLength: 50,
+    },
+    lastName: {
+      type: String,
+      required: true,
+      trim: true,
+      maxLength: 50,
     },
     email: {
       type: String,
-      required: [true, "Please provide your email"],
+      required: true,
       unique: true,
       lowercase: true,
-      validate: [validator.email, "field must be valid email"],
+      validate: [validator.isEmail, "Invalid email"],
     },
     password: {
       type: String,
-      required: [true, "Please provide a password"],
-      minlength: [8, "password must be at least 8 characters"],
+      required: true,
+      minlength: 8,
       select: false,
-      validate: [validator.password, "field must be valid password"],
     },
-    role: {
-      type: String,
-      enum: ["user", "admin"],
-      default: "user",
-    },
-    avatar: {
-      type: String,
-      default: null,
-    },
-    isActive: {
-      type: Boolean,
-      default: true,
-    },
-    lastLogin: {
-      type: Date,
-      default: null,
-    },
-    refreshToken: {
+    token: {
       type: String,
       select: false,
     },
   },
-  { timestamps: true, toJSON: { virtuals: true }, toObject: { virtuals: true } }
+  { versionKey: false }
 );
+const User = mongoose.model("User", userSchema);
+export default User;

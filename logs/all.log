@@ -1,7 +1,19 @@
-2025-10-11 15:32:57:3257 [31merror[39m : [31mDatabase is failed to connect[39m
-2025-10-11 15:35:20:3520 [32minfo[39m : [32mDatabase is connected ac-k8rtfkd-shard-00-01.e20l7ns.mongodb.net[39m
-2025-10-11 15:36:22:3622 [32minfo[39m : [32mDatabase is connected ac-k8rtfkd-shard-00-02.e20l7ns.mongodb.net[39m
-2025-10-11 15:36:22:3622 [32minfo[39m : [32mServer is running on port 5000[39m
-2025-10-11 15:37:36:3736 [32minfo[39m : [32mDatabase is connected ac-k8rtfkd-shard-00-00.e20l7ns.mongodb.net[39m
-2025-10-11 15:37:36:3736 [32minfo[39m : [32mServer is running on port 5000[39m
-2025-10-11 15:37:36:3736 [32minfo[39m : [32mEnvironment : development[39m
+2025-10-15 17:08:14:814 [32minfo[39m : [32mDatabase is connected ac-k8rtfkd-shard-00-01.e20l7ns.mongodb.net[39m
+2025-10-15 17:08:14:814 [32minfo[39m : [32mServer is running on port 5000[39m
+2025-10-15 17:08:14:814 [32minfo[39m : [32mEnvironment : development[39m
+2025-10-15 17:08:26:826 [35mhttp[39m : [35mPOST - /api/users/register - ::1[39m
+2025-10-15 17:08:26:826 [35mhttp[39m : [35mPOST - /api/users/register - 201 - 232ms [39m
+2025-10-15 17:08:32:832 [35mhttp[39m : [35mPOST - /api/users/login - ::1[39m
+2025-10-15 17:08:33:833 [35mhttp[39m : [35mPOST - /api/users/login - 200 - 139ms [39m
+2025-10-15 17:09:20:920 [32minfo[39m : [32mDatabase is connected ac-k8rtfkd-shard-00-02.e20l7ns.mongodb.net[39m
+2025-10-15 17:09:20:920 [32minfo[39m : [32mServer is running on port 5000[39m
+2025-10-15 17:09:20:920 [32minfo[39m : [32mEnvironment : development[39m
+2025-10-15 17:09:29:929 [35mhttp[39m : [35mPOST - /api/users/register - ::1[39m
+2025-10-15 17:09:29:929 [35mhttp[39m : [35mPOST - /api/users/register - 201 - 264ms [39m
+2025-10-15 17:09:37:937 [35mhttp[39m : [35mPOST - /api/users/login - ::1[39m
+2025-10-15 17:09:37:937 [35mhttp[39m : [35mPOST - /api/users/login - 200 - 137ms [39m
+2025-10-15 17:09:42:942 [35mhttp[39m : [35mGET - /api/users/ - ::1[39m
+2025-10-15 17:09:42:942 [35mhttp[39m : [35mGET - /api/users/ - 200 - 134ms [39m
+2025-10-15 17:11:37:1137 [32minfo[39m : [32mDatabase is connected ac-k8rtfkd-shard-00-00.e20l7ns.mongodb.net[39m
+2025-10-15 17:11:37:1137 [32minfo[39m : [32mServer is running on port 5000[39m
+2025-10-15 17:11:37:1137 [32minfo[39m : [32mEnvironment : development[39m

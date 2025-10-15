@@ -4,9 +4,10 @@ import rateLimit from "express-rate-limit";
 import helmet from "helmet";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
-// import { requestLogger } from "./middlewares/requestLogger.js";
 import logger from "./utils/logger.js";
 import usersRouter from "./routes/users.route.js";
+import { errorHandler } from "./middlewares/errorHandler.js";
+import { requestLogger } from "./middlewares/requestLogger.js";
 
 const app = express();
 const port = process.env.PORT || 5000;
@@ -21,6 +22,8 @@ app.use(
 );
 app.use(express.json());
 app.use(helmet());
+
+app.use(requestLogger);
 
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000,
@@ -38,7 +41,9 @@ const connectDb = async () => {
   }
 };
 
-app.use("api/users", usersRouter);
+app.use("/api/users", usersRouter);
+
+app.use(errorHandler);
 
 const startServer = async () => {
   await connectDb();
