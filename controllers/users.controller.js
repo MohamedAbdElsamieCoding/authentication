@@ -3,6 +3,8 @@ import User from "../models/User.js";
 import { AppError } from "../utils/appError.js";
 import httpStatusText from "../utils/httpStatusText.js";
 import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
+import { generateJwt } from "../utils/generateJwt.js";
 
 const getAllUsers = asyncWrapper(async (req, res) => {
   const query = req.query;
@@ -14,7 +16,7 @@ const getAllUsers = asyncWrapper(async (req, res) => {
 });
 
 const register = asyncWrapper(async (req, res, next) => {
-  const { firstName, lastName, email, password } = req.body;
+  const { firstName, lastName, email, password, role } = req.body;
   const oldUser = await User.findOne({ email: email });
   if (oldUser) {
     const error = new AppError("user already exists", 400, httpStatusText.FAIL);
@@ -26,8 +28,18 @@ const register = asyncWrapper(async (req, res, next) => {
     lastName,
     email,
     password: hashedPassword,
+    role,
   });
+
+  const token = generateJwt({
+    email: newUser.email,
+    id: newUser._id,
+    role: newUser.role,
+  });
+
+  newUser.token = token;
   await newUser.save();
+
   res.status(201).json({
     status: httpStatusText.SUCCESS,
     message: "user registered successfully",
@@ -60,7 +72,16 @@ const login = asyncWrapper(async (req, res, next) => {
 
   const matchedPassword = await bcrypt.compare(password, user.password);
 
-  if (!matchedPassword) {
+  if (user && matchedPassword) {
+    const token = generateJwt({
+      email: user.email,
+      id: user._id,
+      role: user.role,
+    });
+    user.token = token;
+    await user.save();
+    res.status(201).json({ status: httpStatusText.SUCCESS, data: { token } });
+  } else {
     const error = new AppError(
       "invalid email or password",
       400,
@@ -68,12 +89,6 @@ const login = asyncWrapper(async (req, res, next) => {
     );
     return next(error);
   }
-
-  res.status(200).json({
-    status: httpStatusText.SUCCESS,
-    message: "user logged in successfully",
-    data: { user },
-  });
 });
 
 const deleteAccount = asyncWrapper(async (req, res, next) => {

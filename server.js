@@ -3,6 +3,7 @@ import cors from "cors";
 import rateLimit from "express-rate-limit";
 import helmet from "helmet";
 import dotenv from "dotenv";
+import hpp from "hpp";
 import mongoose from "mongoose";
 import logger from "./utils/logger.js";
 import usersRouter from "./routes/users.route.js";
@@ -22,21 +23,22 @@ app.use(
 );
 app.use(express.json());
 app.use(helmet());
-
-app.use(requestLogger);
-
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000,
   max: 100,
   message: "Too many requests, please try again later.",
 });
 app.use(limiter);
+app.use(hpp());
+
+app.use(requestLogger);
+
 const connectDb = async () => {
   try {
     const connect = await mongoose.connect(process.env.MONGO_URL);
     logger.info(`Database is connected ${connect.connection.host}`);
   } catch (err) {
-    logger.error(`Database is failed to connect`, err.message);
+    logger.error(`Database is failed to connect ${err.message}`);
     process.exit(1);
   }
 };
